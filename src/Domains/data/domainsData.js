@@ -85,7 +85,7 @@ export const domains = [
         name: 'Data Science',
         slug: 'data-science',
         totalJobs: 1850,
-        icon: '/domains/bars.png',
+        icon: '/domains/data-science.png',
         description: 'Transform data into insights. Data scientists are revolutionizing decision-making across healthcare, finance, e-commerce, and more.',
         growthTrend: '+22% year-over-year growth',
         whyApplyWizz: 'Find data science roles that match your specialization—whether ML engineering, analytics, or research—across companies of all sizes.',
