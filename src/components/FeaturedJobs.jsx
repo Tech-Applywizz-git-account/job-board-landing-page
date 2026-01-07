@@ -11,6 +11,23 @@ const FeaturedJobs = () => {
         { id: 'last-24h', label: 'Last 24 Hours' },
     ];
 
+    // Filter jobs based on selected tab
+    const getFilteredJobs = () => {
+        switch (selectedFilter) {
+            case 'easy-apply':
+                return featuredJobs.filter(job => job.isEasyApply);
+            case 'remote':
+                return featuredJobs.filter(job => job.isRemote);
+            case 'last-24h':
+                return featuredJobs.filter(job => job.postedHoursAgo <= 24);
+            case 'all':
+            default:
+                return featuredJobs;
+        }
+    };
+
+    const filteredJobs = getFilteredJobs();
+
     return (
         <section id="featured-jobs" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary-bg">
             <div className="max-w-7xl mx-auto">
@@ -28,8 +45,8 @@ const FeaturedJobs = () => {
                             key={filter.id}
                             onClick={() => setSelectedFilter(filter.id)}
                             className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${selectedFilter === filter.id
-                                    ? 'bg-bright-blue text-white shadow-glow-blue'
-                                    : 'bg-white text-text-secondary hover:bg-gray-100 border border-gray-200'
+                                ? 'bg-bright-blue text-white shadow-glow-blue'
+                                : 'bg-white text-text-secondary hover:bg-gray-100 border border-gray-200'
                                 }`}
                         >
                             {filter.label}
@@ -38,14 +55,22 @@ const FeaturedJobs = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {featuredJobs.map((job) => (
+                    {filteredJobs.map((job) => (
                         <div
                             key={job.id}
                             className="bg-white rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:border-neon-green border-2 border-gray-200 group shadow-md"
                         >
                             {/* Company Logo */}
-                            <div className="w-16 h-16 bg-secondary-bg rounded-xl flex items-center justify-center mb-4 text-4xl">
-                                {job.logo}
+                            <div className="w-16 h-16 bg-secondary-bg rounded-xl flex items-center justify-center mb-4 overflow-hidden">
+                                {job.logo.startsWith('/') ? (
+                                    <img
+                                        src={job.logo}
+                                        alt={`${job.company} logo`}
+                                        className="w-12 h-12 object-contain"
+                                    />
+                                ) : (
+                                    <span className="text-4xl">{job.logo}</span>
+                                )}
                             </div>
 
                             {/* Job Title */}
