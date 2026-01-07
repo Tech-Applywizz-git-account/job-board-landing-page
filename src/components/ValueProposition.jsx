@@ -24,9 +24,9 @@ const ValueProposition = () => {
         {
             id: 4,
             icon: '🎯',
-            title: 'Jobs Across 73+ Domains',
+            title: 'All Major Job Categories',
             description: 'We support all industries — with domain-specific filtering.',
-            stat: '73+ domains covered',
+            stat: 'All jobs posted within 24 hours',
         },
     ];
 

@@ -193,26 +193,106 @@ export const jobTypes = [
 ];
 
 export const domains = [
-    'Software Engineering',
-    'Data Science',
-    'Cybersecurity',
-    'Product Management',
-    'Finance',
-    'Marketing',
-    'Business Analyst',
-    'QA Engineering',
-    'DevOps',
-    'Cloud Architecture',
-    'Healthcare IT',
-    'AI/Machine Learning',
-    'Mobile Development',
-    'Full Stack Development',
-    'Backend Engineering',
-    'Frontend Engineering',
-    'UX/UI Design',
-    'Project Management',
-    'Sales',
-    'Customer Success',
+    {
+        name: 'Software Engineering',
+        icon: '⚙️',
+        clients: '150+',
+    },
+    {
+        name: 'Data Science',
+        icon: '📊',
+        clients: '140+',
+    },
+    {
+        name: 'Cybersecurity',
+        icon: '🔒',
+        clients: '95+',
+    },
+    {
+        name: 'Product Management',
+        icon: '📱',
+        clients: '88+',
+    },
+    {
+        name: 'Finance',
+        icon: '💰',
+        clients: '120+',
+    },
+    {
+        name: 'Marketing',
+        icon: '📢',
+        clients: '105+',
+    },
+    {
+        name: 'Business Analyst',
+        icon: '📈',
+        clients: '92+',
+    },
+    {
+        name: 'QA Engineering',
+        icon: '✅',
+        clients: '78+',
+    },
+    {
+        name: 'DevOps',
+        icon: '🔧',
+        clients: '110+',
+    },
+    {
+        name: 'Cloud Architecture',
+        icon: '☁️',
+        clients: '115+',
+    },
+    {
+        name: 'Healthcare IT',
+        icon: '🏥',
+        clients: '85+',
+    },
+    {
+        name: 'AI/Machine Learning',
+        icon: '🤖',
+        clients: '130+',
+    },
+    {
+        name: 'Mobile Development',
+        icon: '📱',
+        clients: '98+',
+    },
+    {
+        name: 'Full Stack Development',
+        icon: '💻',
+        clients: '145+',
+    },
+    {
+        name: 'Backend Engineering',
+        icon: '🗄️',
+        clients: '125+',
+    },
+    {
+        name: 'Frontend Engineering',
+        icon: '🎨',
+        clients: '118+',
+    },
+    {
+        name: 'UX/UI Design',
+        icon: '✨',
+        clients: '102+',
+    },
+    {
+        name: 'Project Management',
+        icon: '📋',
+        clients: '95+',
+    },
+    {
+        name: 'Sales',
+        icon: '💼',
+        clients: '88+',
+    },
+    {
+        name: 'Customer Success',
+        icon: '🎯',
+        clients: '75+',
+    },
 ];
 
 export const testimonials = [

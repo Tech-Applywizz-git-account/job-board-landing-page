@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import AboutHero from '../components/AboutHero';
 import OurMission from '../components/OurMission';
 import ProblemSolution from '../components/ProblemSolution';
-import WhyDifferent from '../components/WhyDifferent';
-import HowItWorksAbout from '../components/HowItWorksAbout';
-import OurImpact from '../components/OurImpact';
+// import HowItWorksAbout from '../components/HowItWorksAbout';
+// import OurImpact from '../components/OurImpact';
 import VisionValues from '../components/VisionValues';
 import WhoWeServe from '../components/WhoWeServe';
 import TheTeam from '../components/TheTeam';
@@ -22,9 +21,8 @@ const AboutPage = () => {
             <AboutHero />
             <OurMission />
             <ProblemSolution />
-            <WhyDifferent />
-            <HowItWorksAbout />
-            <OurImpact />
+            {/* <HowItWorksAbout /> */}
+            {/* <OurImpact /> */}
             <VisionValues />
             <WhoWeServe />
             <TheTeam />

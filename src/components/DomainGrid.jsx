@@ -16,10 +16,10 @@ const DomainGrid = () => {
                         <button
                             key={index}
                             className="bg-white rounded-lg p-4 text-center hover:scale-105 hover:border-neon-green border-2 border-gray-200 transition-all duration-300 group shadow-sm"
-                            aria-label={`Browse ${domain} jobs`}
+                            aria-label={`Browse ${domain.name} jobs`}
                         >
                             <p className="font-semibold text-sm sm:text-base group-hover:text-neon-green transition-colors">
-                                {domain}
+                                {domain.name}
                             </p>
                         </button>
                     ))}
