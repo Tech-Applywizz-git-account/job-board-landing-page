@@ -7,7 +7,7 @@ const AboutHero = () => {
                         About <span className="gradient-text">ApplyWizz</span>
                     </h1>
                     <p className="text-2xl sm:text-3xl text-text-secondary font-semibold mb-8 max-w-4xl mx-auto">
-                        Smart Job Matching — Because You Deserve More Than Generic Job Boards
+                        Smart Job Matching — Because You Deserve Better Than One-Size-Fits-All Job Boards
                     </p>
                     <p className="text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto">
                         ApplyWizz matches job seekers to relevant opportunities using resume-based matching.

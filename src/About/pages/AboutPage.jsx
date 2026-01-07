@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import AboutHero from '../components/AboutHero';
-import OurMission from '../components/OurMission';
+import MissionVisionValues from '../components/MissionVisionValues';
 import ProblemSolution from '../components/ProblemSolution';
 // import HowItWorksAbout from '../components/HowItWorksAbout';
 // import OurImpact from '../components/OurImpact';
-import VisionValues from '../components/VisionValues';
 import WhoWeServe from '../components/WhoWeServe';
 import TheTeam from '../components/TheTeam';
 import AboutFAQ from '../components/AboutFAQ';
@@ -19,11 +18,8 @@ const AboutPage = () => {
     return (
         <div className="min-h-screen">
             <AboutHero />
-            <OurMission />
+            <MissionVisionValues />
             <ProblemSolution />
-            {/* <HowItWorksAbout /> */}
-            {/* <OurImpact /> */}
-            <VisionValues />
             <WhoWeServe />
             <TheTeam />
             <AboutFAQ />

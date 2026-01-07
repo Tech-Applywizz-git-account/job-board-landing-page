@@ -40,8 +40,7 @@ const Navbar = () => {
                             className="w-8 h-8 sm:w-12 sm:h-12 object-contain rounded-lg"
                         />
                         <h1 className="text-xl font-display font-bold hidden sm:block">
-                            <span className="text-neon-green">APPLY</span>
-                            <span className="text-text-primary"> WIZZ</span>
+                            <span className="text-text-primary"> APPLYWIZZ</span>
                         </h1>
                     </Link>
 
