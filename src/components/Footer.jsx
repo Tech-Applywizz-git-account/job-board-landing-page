@@ -10,7 +10,7 @@ const Footer = () => {
                             <span className="text-white">Wizz</span>
                         </h3>
                         <p className="text-gray-400 mb-6 max-w-sm">
-                            ApplyWizz — Smart Job Matching for Your Career. Find jobs matched to your resume across 73+ domains.
+                            Find jobs matched to your resume across all industries
                         </p>
                         {/* Social Links */}
                         <div className="flex space-x-4">

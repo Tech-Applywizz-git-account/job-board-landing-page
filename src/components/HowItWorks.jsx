@@ -352,17 +352,6 @@ const HowItWorks = () => {
                         </div>
                     ))}
                 </div>
-
-                {/* CTA */}
-                <div className="text-center mt-16">
-                    <button
-                        className="btn-primary text-lg"
-                        onClick={() => document.getElementById('cta-banner')?.scrollIntoView({ behavior: 'smooth' })}
-                        aria-label="Get started with ApplyWizz"
-                    >
-                        Get Started Free
-                    </button>
-                </div>
             </div>
         </section>
     );

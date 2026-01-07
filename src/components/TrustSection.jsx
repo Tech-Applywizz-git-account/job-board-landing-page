@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const TrustSection = () => {
     const statsRef = useRef([]);
     const testimonialContainerRef = useRef(null);
+    const scrollAnimationRef = useRef(null);
 
     const stats = [
         {
@@ -41,28 +42,28 @@ const TrustSection = () => {
             name: 'Sarah Johnson',
             role: 'Software Engineer',
             text: 'ApplyWizz helped me find my dream job in just 2 weeks! The match scores were incredibly accurate and I only applied to relevant positions.',
-            avatar: '👩‍💻',
+            avatar: '/testimonial-person/women-1.jpg',
         },
         {
             id: 2,
             name: 'Michael Chen',
             role: 'Data Analyst',
             text: 'The ability to see jobs from all sources in one place saved me hours of searching. The fresh jobs filter is a game-changer!',
-            avatar: '👨‍💼',
+            avatar: '/testimonial-person/men-1.jpg',
         },
         {
             id: 3,
             name: 'Emily Rodriguez',
             role: 'Product Manager',
             text: 'I love that ApplyWizz only shows fresh jobs. No more wasting time on outdated listings. Found my role in under a month!',
-            avatar: '👩‍🎓',
+            avatar: '/testimonial-person/women-2.jpg',
         },
         {
             id: 4,
             name: 'David Kumar',
             role: 'DevOps Engineer',
             text: 'The domain-specific filtering made it so easy to find exactly what I was looking for. Highly recommend to any job seeker!',
-            avatar: '👨‍🔬',
+            avatar: '/testimonial-person/men-2.jpg',
         },
     ];
 
@@ -111,12 +112,34 @@ const TrustSection = () => {
         if (testimonialContainer) {
             const scrollWidth = testimonialContainer.scrollWidth / 2; // Half because we duplicated
 
-            gsap.to(testimonialContainer, {
+            scrollAnimationRef.current = gsap.to(testimonialContainer, {
                 x: -scrollWidth,
                 duration: 20,
                 ease: 'none',
                 repeat: -1,
             });
+
+            // Add hover pause functionality
+            const handleMouseEnter = () => {
+                if (scrollAnimationRef.current) {
+                    scrollAnimationRef.current.pause();
+                }
+            };
+
+            const handleMouseLeave = () => {
+                if (scrollAnimationRef.current) {
+                    scrollAnimationRef.current.resume();
+                }
+            };
+
+            testimonialContainer.addEventListener('mouseenter', handleMouseEnter);
+            testimonialContainer.addEventListener('mouseleave', handleMouseLeave);
+
+            // Cleanup
+            return () => {
+                testimonialContainer.removeEventListener('mouseenter', handleMouseEnter);
+                testimonialContainer.removeEventListener('mouseleave', handleMouseLeave);
+            };
         }
     }, []);
 
@@ -169,9 +192,11 @@ const TrustSection = () => {
 
                                 {/* Author Info */}
                                 <div className="flex items-center space-x-3 pt-4 border-t border-gray-200">
-                                    <div className="w-10 h-10 bg-neon-green/10 rounded-full flex items-center justify-center text-xl">
-                                        {testimonial.avatar}
-                                    </div>
+                                    <img
+                                        src={testimonial.avatar}
+                                        alt={testimonial.name}
+                                        className="w-10 h-10 rounded-full object-cover"
+                                    />
                                     <div>
                                         <p className="font-semibold text-sm">{testimonial.name}</p>
                                         <p className="text-xs text-text-muted">{testimonial.role}</p>

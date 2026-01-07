@@ -49,11 +49,11 @@ const HowItWorks = () => {
                     ))}
                 </div>
 
-                <div className="text-center">
+                {/* <div className="text-center">
                     <button className="btn-primary text-lg px-10">
                         Get Started Free
                     </button>
-                </div>
+                </div> */}
             </div>
         </section>
     );
