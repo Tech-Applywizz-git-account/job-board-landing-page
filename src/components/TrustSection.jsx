@@ -1,24 +1,37 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const TrustSection = () => {
+    const statsRef = useRef([]);
+    const testimonialContainerRef = useRef(null);
+
     const stats = [
         {
             id: 1,
             value: '70,000+',
             label: 'Jobs Matched',
+            numericValue: 70000,
         },
         {
             id: 2,
             value: '50,000+',
             label: 'Active Seekers',
+            numericValue: 50000,
         },
         {
             id: 3,
             value: '85%+',
             label: 'Matching Accuracy',
+            numericValue: 85,
         },
         {
             id: 4,
             value: '73+',
             label: 'Domains',
+            numericValue: 73,
         },
     ];
 
@@ -53,6 +66,60 @@ const TrustSection = () => {
         },
     ];
 
+    // Duplicate testimonials for infinite scroll effect
+    const duplicatedTestimonials = [...testimonials, ...testimonials];
+
+    useEffect(() => {
+        // Counter animation for stats
+        statsRef.current.forEach((stat, index) => {
+            if (!stat) return;
+
+            const statData = stats[index];
+            const counterElement = stat.querySelector('.counter');
+
+            gsap.fromTo(
+                counterElement,
+                { textContent: 0 },
+                {
+                    textContent: statData.numericValue,
+                    duration: 2,
+                    ease: 'power2.out',
+                    snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    },
+                    onUpdate: function () {
+                        const value = Math.ceil(this.targets()[0].textContent);
+                        if (index === 0 || index === 1) {
+                            // For large numbers, add comma separator
+                            counterElement.textContent = value.toLocaleString() + '+';
+                        } else if (index === 2) {
+                            // For percentage
+                            counterElement.textContent = value + '%+';
+                        } else {
+                            counterElement.textContent = value + '+';
+                        }
+                    },
+                }
+            );
+        });
+
+        // Horizontal scroll animation for testimonials
+        const testimonialContainer = testimonialContainerRef.current;
+        if (testimonialContainer) {
+            const scrollWidth = testimonialContainer.scrollWidth / 2; // Half because we duplicated
+
+            gsap.to(testimonialContainer, {
+                x: -scrollWidth,
+                duration: 20,
+                ease: 'none',
+                repeat: -1,
+            });
+        }
+    }, []);
+
     return (
         <section id="user" className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -65,46 +132,54 @@ const TrustSection = () => {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-                    {stats.map((stat) => (
+                    {stats.map((stat, index) => (
                         <div
                             key={stat.id}
+                            ref={(el) => (statsRef.current[index] = el)}
                             className="bg-white rounded-xl p-8 text-center hover:scale-105 transition-all duration-300 hover:border-neon-green border-2 border-gray-200 shadow-md"
                         >
-                            <div className="text-5xl font-bold text-neon-green mb-3 text-glow-green">
-                                {stat.value}
+                            <div className="counter text-5xl font-bold text-neon-green mb-3 text-glow-green">
+                                0
                             </div>
                             <p className="text-text-secondary text-sm sm:text-base">{stat.label}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* Testimonials */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {testimonials.map((testimonial) => (
-                        <div
-                            key={testimonial.id}
-                            className="bg-white rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:border-bright-blue border-2 border-gray-200 shadow-md"
-                        >
-                            {/* Quote Icon */}
-                            <div className="text-bright-blue text-4xl mb-3 opacity-50">"</div>
+                {/* Testimonials - Horizontal Scrolling */}
+                <div className="overflow-hidden">
+                    <div
+                        ref={testimonialContainerRef}
+                        className="flex gap-6"
+                        style={{ width: 'fit-content' }}
+                    >
+                        {duplicatedTestimonials.map((testimonial, index) => (
+                            <div
+                                key={`${testimonial.id}-${index}`}
+                                className="bg-white rounded-tr-3xl rounded-br-3xl rounded-bl-3xl p-6 border-2 border-gray-300 shadow-md flex-shrink-0"
+                                style={{ width: '300px' }}
+                            >
+                                {/* Quote Icon */}
+                                <div className="text-bright-blue text-4xl mb-3 opacity-50">"</div>
 
-                            {/* Testimonial Text */}
-                            <p className="text-text-secondary mb-6 leading-relaxed italic text-sm">
-                                {testimonial.text}
-                            </p>
+                                {/* Testimonial Text */}
+                                <p className="text-text-secondary mb-6 leading-relaxed italic text-sm">
+                                    {testimonial.text}
+                                </p>
 
-                            {/* Author Info */}
-                            <div className="flex items-center space-x-3 pt-4 border-t border-gray-200">
-                                <div className="w-10 h-10 bg-neon-green/10 rounded-full flex items-center justify-center text-xl">
-                                    {testimonial.avatar}
-                                </div>
-                                <div>
-                                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                                    <p className="text-xs text-text-muted">{testimonial.role}</p>
+                                {/* Author Info */}
+                                <div className="flex items-center space-x-3 pt-4 border-t border-gray-200">
+                                    <div className="w-10 h-10 bg-neon-green/10 rounded-full flex items-center justify-center text-xl">
+                                        {testimonial.avatar}
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold text-sm">{testimonial.name}</p>
+                                        <p className="text-xs text-text-muted">{testimonial.role}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

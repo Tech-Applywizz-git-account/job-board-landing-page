@@ -39,7 +39,17 @@ const DomainsHub = () => {
                             className="bg-white rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:border-bright-blue border-2 border-gray-200 shadow-md group"
                         >
                             {/* Icon */}
-                            <div className="text-5xl mb-4">{domain.icon}</div>
+                            <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                                {domain.icon.startsWith('/') ? (
+                                    <img
+                                        src={domain.icon}
+                                        alt={`${domain.name} icon`}
+                                        className="w-14 h-14 object-contain"
+                                    />
+                                ) : (
+                                    <span className="text-5xl">{domain.icon}</span>
+                                )}
+                            </div>
 
                             {/* Domain Name */}
                             <h3 className="text-xl font-bold mb-2 group-hover:text-bright-blue transition-colors">
