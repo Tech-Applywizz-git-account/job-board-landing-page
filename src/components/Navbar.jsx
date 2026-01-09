@@ -67,13 +67,13 @@ const Navbar = () => {
                         >
                             Domain-Specific
                         </Link>
-                        <button
-                            onClick={() => scrollToSection('user')}
+                        <Link
+                            to="/pricing"
                             className="text-text-secondary hover:text-bright-blue transition-colors duration-300 font-medium"
-                            aria-label="Navigate to User section"
+                            aria-label="Navigate to Pricing"
                         >
-                            User
-                        </button>
+                            Pricing
+                        </Link>
                     </div>
 
                     {/* Desktop Action Buttons */}
@@ -138,12 +138,13 @@ const Navbar = () => {
                             >
                                 Domain-Specific
                             </Link>
-                            <button
-                                onClick={() => scrollToSection('user')}
+                            <Link
+                                to="/pricing"
+                                onClick={() => setIsMenuOpen(false)}
                                 className="block w-full text-left px-4 py-2 text-text-secondary hover:text-bright-blue hover:bg-gray-50 rounded-lg transition-colors"
                             >
-                                User
-                            </button>
+                                Pricing
+                            </Link>
 
                             {/* Mobile Action Buttons */}
                             <div className="space-y-2 pt-3">

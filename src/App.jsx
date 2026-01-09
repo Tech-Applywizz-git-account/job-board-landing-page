@@ -32,6 +32,9 @@ import AboutPage from './About/pages/AboutPage';
 // Signup import
 import Signup from './pages/Signup';
 
+// Pricing import
+import PricingPage from './pages/PricingPage';
+
 // Homepage Component
 const Homepage = () => {
   return (
@@ -62,6 +65,9 @@ function App() {
 
           {/* Signup Page */}
           <Route path="/signup" element={<Signup />} />
+
+          {/* Pricing Page */}
+          <Route path="/pricing" element={<PricingPage />} />
 
           {/* Job Listings Hub */}
           <Route path="/jobs" element={<JobListingsHub />} />
