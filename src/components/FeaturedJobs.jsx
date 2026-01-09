@@ -77,7 +77,7 @@ const FeaturedJobs = () => {
         <section id="featured-jobs" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary-bg">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl sm:text-5xl font-display font-bold text-center mb-4">
-                    Browse Jobs from Top Companiesnpm
+                    Browse Jobs from Top Companies
                 </h2>
                 <p className="text-xl text-text-secondary text-center mb-12 max-w-2xl mx-auto">
                     Explore opportunities from industry-leading organizations
