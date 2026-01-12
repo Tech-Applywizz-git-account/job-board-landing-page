@@ -80,7 +80,7 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center space-x-3">
                         <button
                             className="text-text-primary font-semibold px-6 py-2 rounded-full hover:bg-gray-100 transition-all duration-300"
-                            onClick={() => window.open('https://ticketingtoolapplywizz.vercel.app/login', '_blank')}
+                            onClick={() => window.open('https://www.apply-wizz.me/login', '_blank')}
                             aria-label="Sign in to ApplyWizz"
                         >
                             Sign In
@@ -150,7 +150,7 @@ const Navbar = () => {
                             <div className="space-y-2 pt-3">
                                 <button
                                     className="w-full text-text-primary font-semibold px-6 py-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-all"
-                                    onClick={() => window.open('https://ticketingtoolapplywizz.vercel.app/login', '_blank')}
+                                    onClick={() => window.open('https://www.apply-wizz.me/login', '_blank')}
                                 >
                                     Sign In
                                 </button>

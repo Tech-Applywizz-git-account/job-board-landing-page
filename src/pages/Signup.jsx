@@ -69,7 +69,7 @@ const Signup = () => {
                     {/* Right Panel - Embedded Login */}
                     <div className="p-0 flex flex-col justify-center bg-white">
                         <iframe
-                            src="https://ticketingtoolapplywizz.vercel.app/login"
+                            src="https://www.apply-wizz.me/login"
                             className="w-full h-full min-h-[600px]"
                             title="ApplyWizz Login"
                             frameBorder="0"

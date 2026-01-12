@@ -159,7 +159,7 @@ const PricingPage = () => {
                                             ? 'bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 shadow-lg hover:shadow-2xl'
                                             : 'bg-blue-600 hover:bg-blue-500 shadow-lg hover:shadow-xl'
                                             }`}
-                                        onClick={() => window.open('https://ticketingtoolapplywizz.vercel.app/login', '_blank')}
+                                        onClick={() => window.open('https://www.apply-wizz.me/login', '_blank')}
                                     >
                                         {plan.cta}
                                     </button>
