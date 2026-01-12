@@ -31,11 +31,11 @@ const PricingPage = () => {
             id: '3-months',
             title: '3 Months',
             subtitle: 'Best for testing commitment',
-            price: '$119.9',
+            price: '$119.99',
             period: 'total',
             billing: 'Billed upfront • Save 10%',
             discount: '10% OFF',
-            badge: null,
+            badge: 'MOST POPULAR',
             features: [
                 'Unlimited job links daily',
                 'AI-powered job matching',
@@ -44,7 +44,7 @@ const PricingPage = () => {
                 'Early access to new features'
             ],
             cta: 'Save 10% Now',
-            highlighted: false
+            highlighted: true
         },
         {
             id: '6-months',
@@ -54,7 +54,7 @@ const PricingPage = () => {
             period: 'total',
             billing: 'Billed upfront • Save 17%',
             discount: '17% OFF',
-            badge: 'MOST POPULAR',
+            badge: null,
             features: [
                 'Unlimited job links daily',
                 'AI-powered job matching',
@@ -65,7 +65,7 @@ const PricingPage = () => {
                 'Dedicated account manager'
             ],
             cta: 'Get Best Value (17% OFF)',
-            highlighted: true
+            highlighted: false
         }
     ];
 

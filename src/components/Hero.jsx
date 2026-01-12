@@ -6,17 +6,27 @@ const Hero = () => {
     return (
         <section
             id="hero"
-            className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden gradient-bg-soft"
+            className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50"
+            style={{
+                background: 'linear-gradient(135deg, #f8fafc 0%, #ecfeff 50%, #e0f2fe 100%)',
+            }}
         >
+            {/* Animated Background Pattern */}
+            <div className="absolute inset-0 overflow-hidden opacity-30">
+                <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+                <div className="absolute top-40 right-20 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute -bottom-8 left-40 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-500"></div>
+            </div>
+
             <div className="relative z-10 max-w-7xl mx-auto w-full">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left Column - Visual */}
                     <div className="order-2 lg:order-1 fade-in delay-200">
                         <img
-                            src="/hero_illustration.png"
+                            src="ai-robo-2.jpeg"
                             alt="AI-Powered Job Search Platform"
-                            className="w-full h-auto max-w-2xl mx-auto animate-float"
+                            className="w-full h-auto max-w-2xl mx-auto"
                         />
                     </div>
 
