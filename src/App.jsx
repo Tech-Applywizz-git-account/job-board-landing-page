@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ValueProposition from './components/ValueProposition';
@@ -35,6 +35,13 @@ import Signup from './pages/Signup';
 // Pricing import
 import PricingPage from './pages/PricingPage';
 
+// Payment pages
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentCancel from './pages/PaymentCancel';
+
+// Admin page
+import AdminDashboard from './pages/AdminDashboard';
+
 // Homepage Component
 const Homepage = () => {
   return (
@@ -51,46 +58,65 @@ const Homepage = () => {
   );
 };
 
+// AppContent component that uses useLocation (must be inside Router)
+const AppContent = () => {
+  const location = useLocation();
+  const hideNavbar = location.pathname === '/payment/success' ||
+    location.pathname === '/payment/cancel' ||
+    location.pathname === '/admin';
+
+  return (
+    <div className="min-h-screen bg-primary-bg">
+      {!hideNavbar && <Navbar />}
+      <Routes>
+        {/* Homepage */}
+        <Route path="/" element={<Homepage />} />
+
+        {/* About Page */}
+        <Route path="/about" element={<AboutPage />} />
+
+        {/* Signup Page */}
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Pricing Page */}
+        <Route path="/pricing" element={<PricingPage />} />
+
+        {/* Payment Pages */}
+        <Route path="/payment/success" element={<PaymentSuccess />} />
+        <Route path="/payment/cancel" element={<PaymentCancel />} />
+
+        {/* Admin Dashboard */}
+        <Route path="/admin" element={<AdminDashboard />} />
+
+        {/* Job Listings Hub */}
+        <Route path="/jobs" element={<JobListingsHub />} />
+
+        {/* Job Category Pages */}
+        <Route path="/jobs/career-portals" element={<CareerPortalsPage />} />
+        <Route path="/jobs/linkedin-easy-apply" element={<LinkedInEasyApplyPage />} />
+        <Route path="/jobs/indeed-easy-apply" element={<IndeedEasyApplyPage />} />
+        <Route path="/jobs/w2-contracts" element={<W2ContractsPage />} />
+        <Route path="/jobs/c2c-contracts" element={<C2CContractsPage />} />
+        <Route path="/jobs/staffing-agencies" element={<StaffingAgenciesPage />} />
+        <Route path="/jobs/sponsored" element={<SponsoredJobsPage />} />
+
+        {/* Domains Hub */}
+        <Route path="/domains" element={<DomainsHub />} />
+
+        {/* Domain Category Pages */}
+        <Route path="/domains/software-engineering" element={<SoftwareEngineeringPage />} />
+        <Route path="/domains/data-science" element={<DataSciencePage />} />
+        <Route path="/domains/product-management" element={<ProductManagementPage />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-primary-bg">
-        <Navbar />
-        <Routes>
-          {/* Homepage */}
-          <Route path="/" element={<Homepage />} />
-
-          {/* About Page */}
-          <Route path="/about" element={<AboutPage />} />
-
-          {/* Signup Page */}
-          <Route path="/signup" element={<Signup />} />
-
-          {/* Pricing Page */}
-          <Route path="/pricing" element={<PricingPage />} />
-
-          {/* Job Listings Hub */}
-          <Route path="/jobs" element={<JobListingsHub />} />
-
-          {/* Job Category Pages */}
-          <Route path="/jobs/career-portals" element={<CareerPortalsPage />} />
-          <Route path="/jobs/linkedin-easy-apply" element={<LinkedInEasyApplyPage />} />
-          <Route path="/jobs/indeed-easy-apply" element={<IndeedEasyApplyPage />} />
-          <Route path="/jobs/w2-contracts" element={<W2ContractsPage />} />
-          <Route path="/jobs/c2c-contracts" element={<C2CContractsPage />} />
-          <Route path="/jobs/staffing-agencies" element={<StaffingAgenciesPage />} />
-          <Route path="/jobs/sponsored" element={<SponsoredJobsPage />} />
-
-          {/* Domains Hub */}
-          <Route path="/domains" element={<DomainsHub />} />
-
-          {/* Domain-Specific Pages */}
-          <Route path="/jobs/software-engineering" element={<SoftwareEngineeringPage />} />
-          <Route path="/jobs/data-science" element={<DataSciencePage />} />
-          <Route path="/jobs/product-management" element={<ProductManagementPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }
