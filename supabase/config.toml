@@ -1,0 +1,59 @@
+# Supabase Configuration
+
+[project]
+# Replace with your project reference ID
+# Find it in: Supabase Dashboard → Project Settings → General → Reference ID
+ref = "your-project-ref-here"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+smtp_port = 54325
+pop3_port = 54326
+
+[storage]
+enabled = true
+port = 54327
+file_size_limit = "50MiB"
+
+[auth]
+enabled = true
+port = 54328
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["https://localhost:5173"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[functions]
+# Edge Functions configuration
+enabled = true
+
+# Environment variables for local development
+# These will be used when running functions locally
+[functions.env]
+PAYPAL_API_URL = "https://api-m.sandbox.paypal.com"
+# Add other non-sensitive env vars here for local testing
+
+# Note: Sensitive credentials should be added via Supabase Dashboard
+# Dashboard → Project Settings → Edge Functions → Secrets

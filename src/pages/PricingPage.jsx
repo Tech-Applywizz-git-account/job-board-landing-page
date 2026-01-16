@@ -1,12 +1,70 @@
 import { useState, useEffect } from 'react';
+import PaymentForm from '../components/PaymentForm';
+import { createTransaction, processPayment } from '../lib/paymentService';
+import { getPaymentSettings } from '../lib/adminService';
 
 const PricingPage = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [showPaymentForm, setShowPaymentForm] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         // Trigger fade-in animation on mount
         setIsVisible(true);
     }, []);
+
+    const handlePayNowClick = (plan) => {
+        setSelectedPlan(plan);
+        setShowPaymentForm(true);
+    };
+
+    const handleClosePaymentForm = () => {
+        setShowPaymentForm(false);
+        setSelectedPlan(null);
+    };
+
+    const handlePaymentFormSubmit = async (formData) => {
+        setIsProcessing(true);
+
+        try {
+            // Step 1: Create transaction record
+            const transaction = await createTransaction(formData, selectedPlan.id);
+            console.log('Transaction created:', transaction);
+
+            // Step 2: Get payment gateway settings from admin
+            const paymentSettings = await getPaymentSettings();
+
+            // Default to PayPal Dubai if settings fail
+            const paymentMethod = paymentSettings?.method || 'paypal';
+            const paymentAccount = paymentSettings?.account || 'dubai';
+
+            console.log('Using payment gateway:', paymentMethod, paymentAccount);
+
+            const paymentResult = await processPayment(
+                transaction.jb_id,
+                paymentMethod,
+                paymentAccount
+            );
+
+            console.log('Payment initiated:', paymentResult);
+
+            // Step 3: Redirect to payment gateway or handle payment flow
+            if (paymentResult.approvalUrl) {
+                window.location.href = paymentResult.approvalUrl;
+            } else if (paymentResult.clientSecret) {
+                // Handle Stripe payment
+                // You'll need to integrate Stripe Elements here
+                console.log('Stripe payment:', paymentResult);
+            }
+
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('Payment failed. Please try again.');
+        } finally {
+            setIsProcessing(false);
+        }
+    };
 
     const pricingPlans = [
         {
@@ -159,7 +217,7 @@ const PricingPage = () => {
                                             ? 'bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 shadow-lg hover:shadow-2xl'
                                             : 'bg-blue-600 hover:bg-blue-500 shadow-lg hover:shadow-xl'
                                             }`}
-                                        onClick={() => window.open('https://www.apply-wizz.me/login', '_blank')}
+                                        onClick={() => handlePayNowClick(plan)}
                                     >
                                         {plan.cta}
                                     </button>
@@ -195,6 +253,15 @@ const PricingPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Payment Form Modal */}
+            {showPaymentForm && selectedPlan && (
+                <PaymentForm
+                    plan={selectedPlan}
+                    onClose={handleClosePaymentForm}
+                    onSubmit={handlePaymentFormSubmit}
+                />
+            )}
         </div>
     );
 };
